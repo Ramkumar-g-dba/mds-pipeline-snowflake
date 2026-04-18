@@ -1,0 +1,12 @@
+product_id,product_name,category,unit_cost,created_at
+1,Laptop Pro 15,Electronics,45000.00,2025-01-01
+2,Wireless Mouse,Electronics,800.00,2025-01-01
+3,Office Chair,Furniture,5500.00,2025-01-01
+4,USB Hub 7-Port,Electronics,1200.00,2025-01-01
+5,Standing Desk,Furniture,12000.00,2025-01-01
+6,Mechanical Keyboard,Electronics,3500.00,2025-01-01
+7,Monitor 27 inch,Electronics,18000.00,2025-01-01
+8,Webcam HD,Electronics,2200.00,2025-01-01
+9,Desk Lamp LED,Furniture,900.00,2025-01-01
+10,Headphones Pro,Electronics,4500.00,2025-01-01
+
