@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,city,country,created_at
+1,Arjun,Kumar,arjun.kumar@email.com,Chennai,India,2025-01-01
+2,Priya,Sharma,priya.sharma@email.com,Mumbai,India,2025-01-01
+3,Ravi,Verma,ravi.verma@email.com,Bangalore,India,2025-01-01
+4,Sneha,Patel,sneha.patel@email.com,Delhi,India,2025-01-01
+5,Karthik,Raj,karthik.raj@email.com,Hyderabad,India,2025-01-01
+6,Divya,Nair,divya.nair@email.com,Pune,India,2025-01-01
+7,Vikram,Singh,vikram.singh@email.com,Kolkata,India,2025-01-01
+8,Meena,Iyer,meena.iyer@email.com,Chennai,India,2025-01-01
+9,Suresh,Pillai,suresh.pillai@email.com,Coimbatore,India,2025-01-01
+10,Anitha,Reddy,anitha.reddy@email.com,Hyderabad,India,2025-01-01
