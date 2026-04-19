@@ -84,7 +84,7 @@ Power BI Dashboard
 ## Project Structure
 
 ```
-mds-pipeline/
+mds-pipeline-snowflake/
 │
 ├── README.md
 ├── architecture.md
@@ -97,9 +97,16 @@ mds-pipeline/
 │   ├── 05_streams_tasks.sql        -- Automation with Streams & Tasks
 │   └── 06_s3_integration.sql       -- AWS S3 stage configuration
 │
+├── data/
+│   ├── customers.csv               -- Sample dataset (reference only)
+│   ├── products.csv                -- Sample dataset (reference only)
+│   └── orders.csv                  -- Sample dataset (reference only)
+│
 └── docs/
-    └── pipeline_flow.png           -- Architecture diagram
+    └── pipeline_notes.md           -- Implementation notes
 ```
+
+> **Note on Data:** Actual data was inserted directly into MySQL tables using MySQL Workbench and hosted on AWS RDS. Fivetran then synced this data into Snowflake using CDC (binary log). The CSV files in the `data/` folder represent the same dataset in flat-file format for reference and reproducibility purposes.
 
 ---
 
@@ -110,19 +117,32 @@ mds-pipeline/
 - AWS account with RDS MySQL instance
 - Fivetran account (free trial available)
 - Power BI Desktop
+- MySQL Workbench
 
-### Step 1: Snowflake Setup
+### Step 1: MySQL RDS Setup
+1. Create AWS RDS MySQL instance
+2. Connect via MySQL Workbench
+3. Create database and tables:
+```sql
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
+-- Create customers, products, orders tables
+-- Insert sample data from data/ folder
+```
+
+### Step 2: Snowflake Setup
 ```sql
 -- Run 01_database_setup.sql
 -- Creates: RAW_DB, STAGING_DB, ANALYTICS_DB
 ```
 
-### Step 2: Fivetran Configuration
+### Step 3: Fivetran Configuration
 1. Create Fivetran connector → Source: MySQL (AWS RDS)
 2. Destination: Snowflake → RAW_DB
-3. Enable incremental sync
+3. Update method: Binary Log (CDC)
+4. Enable incremental sync
 
-### Step 3: Run Transformations
+### Step 4: Run Transformations
 ```sql
 -- Run in order:
 -- 02_raw_layer.sql
@@ -131,7 +151,7 @@ mds-pipeline/
 -- 05_streams_tasks.sql
 ```
 
-### Step 4: Power BI Connection
+### Step 5: Power BI Connection
 1. Get Data → Snowflake
 2. Server: `your-account.snowflakecomputing.com`
 3. Database: `ANALYTICS_DB`
@@ -190,3 +210,4 @@ JOIN ANALYTICS_DB.PUBLIC.DIM_DATE d ON o.ORDER_DATE = d.FULL_DATE;
 - LinkedIn: [linkedin.com/in/ramdba](https://linkedin.com/in/ramdba)
 - GitHub: [github.com/Ramkumar-g-dba](https://github.com/Ramkumar-g-dba)
 - Portfolio: [ramkumar-g-dba.github.io/ramkumar-portfolio](https://ramkumar-g-dba.github.io/ramkumar-portfolio)
+
